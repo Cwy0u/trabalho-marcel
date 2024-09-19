@@ -2,25 +2,26 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin();
 
   Future<void> initNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmpa/ic_launcher');
+    AndroidInitializationSettings('@mipmap/ic_launcher');
     final InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
+    InitializationSettings(android: initializationSettingsAndroid);
 
     await _notificationsPlugin.initialize(initializationSettings);
   }
 
   Future<void> showNotification(String title, String body) async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifcs =
-        AndroidNotificationDetails(
-            'mood_tracker_channel_id', 'mood_tracker_channel_name',
-            importance: Importance.max, priority: Priority.high);
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(
+        'mood_tracker_channel_id', 'mood_tracker_channel_name',
+        importance: Importance.max, priority: Priority.high);
     const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifcs);
+    NotificationDetails(android: androidPlatformChannelSpecifics);
 
-    await _notificationsPlugin.show(0, title, body, platformChannelSpecifics);
+    await _notificationsPlugin.show(
+        0, title, body, platformChannelSpecifics);
   }
 }
